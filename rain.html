@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下雨啦，回家收衣服啦</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .rain-text {
+            position: absolute;
+            font-size: 24px;
+            user-select: none;
+            white-space: nowrap;
+            writing-mode: vertical-rl;
+            transform: rotate(360deg);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.2), 0 0 12px rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const words = [
+            "狂吃不胖",
+            "钱包爆涨",
+            "颜值逆天",
+            "快乐加倍",
+            "瘦得像闪电",
+            "富得像土豪",
+            "美得像天仙",
+            "逛街捡钱",
+            "吃饭免单",
+            "睡到自然醒",
+            "可爱到爆",
+            "幸运到炸",
+            "可吃嘛嘛香",
+            "心情永远像放假",
+        ];
+        let intervalId;
+        let isRaining = false;
+
+        function createRainText() {
+            const text = document.createElement("div");
+            text.className = "rain-text";
+            text.innerText = words[Math.floor(Math.random() * words.length)];
+            document.body.appendChild(text);
+
+            // const startX = Math.random() * window.innerWidth;
+            const startX = Math.random() * (window.innerWidth - 10);
+            text.style.left = `${startX}px`;
+            text.style.top = `-100px`;
+            text.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            // text.style.fontSize = `${Math.random() * 20 + 20}px`;
+            text.style.fontSize = `${Math.random() * 10 + 15}px`;
+            text.style.opacity = Math.random() * 0.5 + 0.5;
+
+            let speed = Math.random() * 5 + 2;
+            function fall() {
+                const top = parseFloat(text.style.top);
+                if (top < window.innerHeight) {
+                    text.style.top = `${top + speed}px`;
+                    requestAnimationFrame(fall);
+                } else {
+                    text.remove();
+                }
+            }
+            fall();
+        }
+        function startRain() {
+            if (!isRaining) {
+                intervalId = setInterval(createRainText, 200);
+                isRaining = true;
+            }
+        }
+
+        function stopRain() {
+            clearInterval(intervalId);
+            isRaining = false;
+        }
+        startRain()
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>啦啦啦啦啦啦</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./src/common.css">
+    <link rel="stylesheet" href="./src/pai.css">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #fff;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .rain-text {
+            position: absolute;
+            font-size: 24px;
+            user-select: none;
+            white-space: nowrap;
+            writing-mode: vertical-rl;
+            transform: rotate(360deg);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.2), 0 0 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #myAudio {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="myAudio" autoplay loop>
+        <source src="./src/晚安-鹿先森乐队.m4a  " type="audio/mpeg">
+    </audio>
+    <div class="containera">
+        <div class="items-text">
+            心血来潮想写个网站；有点不善言辞,还非常拧巴,情商也一般....（哈哈哈哈），但是我很认真的......，不行，得给你点压力
+        </div>
+        <div>考试倒计时</div>
+        <div class="countdown">
+            <div>距离考试还有....还有...还有....还有好久（怎么会给压力呢，哈哈哈）</div>
+        </div>
+        <div>当前茂名天气</div>
+        <div class="weather">
+            <div id="temperature">温度：加载中...</div>
+            <div id="high-low">最高温度/最低温度：加载中...</div>
+            <div id="high-d">最高温度/最低温度：加载中...</div>
+        </div>
+
+        <div>今日心情：</div>
+        <div class="message">
+            <div id="daily-message">要开心，吃嘛嘛香，睡嘛嘛甜，心情永远像放假！🍀</div>
+        </div>
+        <div class="items-text">
+            <div>狗头保护</div>
+            <img src="./images/image.png" alt="">
+            <img src="./images/image.png" alt="">
+        </div>
+
+    </div>
+
+    <div class="box"></div>
+
+    <div class="dh">
+        <div class="content">
+            <div class="flex">
+                <h1 class="qq">早上好呀，xxz同学</h1>
+                <div class="images">
+                    <img src="./images/image.png" alt="">
+                </div>
+                <h1 class="dd">请摸摸狗头</h1>
+            </div>
+        </div>
+        <section>
+            <div class="item" style="width: 97%; background-color: rgb(255, 255, 255);"></div>
+            <div class="item" style="width: 97%; background-color: rgb(255, 255, 255);"></div>
+            <div class="item" style="width: 97%; background-color: rgb(255, 255, 255);"></div>
+            <div class="item" style="width: 97%; background-color: rgb(255, 255, 255);"></div>
+            <div class="item" style="width: 97%; background-color: rgb(255, 255, 255);"></div>
+            <div class="item" style="width: 97%; background-color: rgb(255, 255, 255);"></div>
+            <div class="item" style="width: 97%; background-color: rgb(255, 255, 255);"></div>
+            <div class="item" style="width: 97%; background-color: rgb(255, 255, 255);"></div>
+            <div class="item" style="width: 97%; background-color: rgb(255, 255, 255);"></div>
+            <div class="item" style="width: 97%; background-color: rgb(255, 255, 255);"></div>
+        </section>
+    </div>
+</body>
+<script src="./src/anime.min.js"></script>
+<script src="./src/script.js"></script>
+<script>
+    function data() {
+        const html = document.querySelector(".content .qq")
+        const qq = document.querySelector(".content .dd")
+        const currentTime = new Date();
+        const year = currentTime.getFullYear(); // 获取年份
+        const month = currentTime.getMonth() + 1; // 获取月份，注意：月份是从 0 开始的，所以需要加 1
+        const day = currentTime.getDate(); // 获取日期
+        const hours = currentTime.getHours(); // 获取小时
+        const minutes = currentTime.getMinutes(); // 获取分钟
+        const seconds = currentTime.getSeconds(); // 获取秒钟
+        // console.log(`当前时间是：${year}-${month}-${day} ${hours}:${minutes}:${seconds}`);
+        let timeOfDay = ''
+        if (hours >= 0 && hours < 6) {
+            timeOfDay = "怎么还不睡觉呀，xxz同学";
+        } else if (hours >= 6 && hours < 12) {
+            timeOfDay = "早上好呀，xxz同学";
+        } else if (hours >= 12 && hours < 18) {
+            timeOfDay = "中午好呀，xxz同学";
+        } else {
+            timeOfDay = "晚上好呀，xxz同学";
+        }
+        html.innerHTML = timeOfDay
+        qq.innerHTML = "请摸摸狗头"
+    }
+    data()
+
+
+
+</script>
+<script>
+    const words = [
+        "狂吃不胖",
+        "钱包爆涨",
+        "颜值逆天",
+        "快乐加倍",
+        "瘦得像闪电",
+        "富得像土豪",
+        "美得像天仙",
+        "逛街捡钱",
+        "吃饭免单",
+        "睡到自然醒",
+        "可爱到爆",
+        "幸运到炸",
+        "可吃嘛嘛香",
+        "心情永远像放假",
+    ];
+    let intervalId;
+    let isRaining = false;
+
+    function createRainText() {
+        const text = document.createElement("div");
+        text.className = "rain-text";
+        text.innerText = words[Math.floor(Math.random() * words.length)];
+        document.querySelector('.box').appendChild(text);
+
+        // const startX = Math.random() * window.innerWidth;
+        const startX = Math.random() * (window.innerWidth - 20);
+        text.style.left = `${startX}px`;
+        text.style.top = `-200px`;
+        text.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        // text.style.fontSize = `${Math.random() * 20 + 20}px`;
+        text.style.fontSize = `${Math.random() * 10 + 40}px`;
+        text.style.opacity = Math.random() * 0.5 + 0.5;
+
+        let speed = Math.random() * 5 + 2;
+        function fall() {
+            const top = parseFloat(text.style.top);
+            if (top < window.innerHeight) {
+                text.style.top = `${top + speed}px`;
+                requestAnimationFrame(fall);
+            } else {
+                text.remove();
+            }
+        }
+        fall();
+    }
+    function startRain() {
+        if (!isRaining) {
+            intervalId = setInterval(createRainText, 200);
+            isRaining = true;
+        }
+    }
+
+    function stopRain() {
+        clearInterval(intervalId);
+        isRaining = false;
+    }
+    let imagesBtn = document.querySelector(".images")
+    let containera = document.querySelector(".containera")
+    let dh = document.querySelector(".dh")
+    imagesBtn.onclick = function () {
+        // document.getElementById('myAudio').play()
+        dh.classList.add("hidden");
+        startRain()
+        containera.style.opacity = '1'
+    }
+
+</script>
+<script>
+    // 设置考试日期
+    const examDate = new Date('2025-03-07');
+
+    // 更新倒计时
+    function updateCountdown() {
+        const now = new Date();
+        const timeDiff = examDate - now;
+        const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+        document.getElementById('days').textContent = daysLeft;
+    }
+
+    // 获取天气信息
+    async function fetchWeather() {
+        const latitude = 21.5072; // 新店区纬度
+        const longitude = 111.0073; // 新店区经度
+        const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min&current_weather=true&timezone=Asia%2FTaipei`;
+
+        try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            const currentTemp = data.current_weather.temperature;
+            const maxTemp = data.daily.temperature_2m_max[0];
+            const minTemp = data.daily.temperature_2m_min[0];
+
+            document.getElementById('temperature').textContent = `当前温度：${currentTemp}°C`;
+            document.getElementById('high-low').textContent = `最高温度：${maxTemp}°C`;
+            document.getElementById('high-d').textContent = `最低温度：${minTemp}°C`;
+        } catch (error) {
+            console.error('获取天气信息失败：', error);
+            document.getElementById('temperature').textContent = '温度：获取失败';
+            document.getElementById('high-low').textContent = '最高温度/最低温度：获取失败';
+        }
+    }
+
+    // // 设置鼓励的话和每日留言
+    // function setMessages() {
+    //     const encouragements = [
+    //         '你是最棒的，相信自己！',
+    //         '每一次努力都是进步，加油！',
+    //         '坚持到底，就是胜利！',
+    //         '你的努力终将得到回报！',
+    //         '相信自己，没有做不到的事！'
+    //     ];
+
+    //     const dailyMessages = [
+    //         '记得按时休息，保持良好状态。',
+    //         '多喝水，对身体有益。',
+    //         '适当运动，放松心情。',
+    //         '保持微笑，迎接每一天。',
+    //         '相信自己，你一定行！'
+    //     ];
+
+    //     const today = new Date();
+    //     const index = today.getDate() % encouragements.length;
+
+    //     document.getElementById('encouragement').textContent = encouragements[index];
+    //     document.getElementById('daily-message').innerHTML = "天天开心";
+    // }
+
+    // 初始化
+    function init() {
+        // updateCountdown();
+        fetchWeather();
+        // setMessages();
+    }
+
+    init();
+</script>
+
+</html>

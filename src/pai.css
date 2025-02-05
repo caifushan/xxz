@@ -1,0 +1,23 @@
+
+
+.containera {
+    position: absolute;
+    width: 80%;
+    top: 30px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8s);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    color: #000;
+    font-size: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: left;
+    opacity: 0;
+
+}
+.containera div{
+    margin-bottom: 30px;
+    font-weight: normal;
+}

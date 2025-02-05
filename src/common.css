@@ -1,0 +1,64 @@
+*,html,body{
+    padding: 0;
+    margin: 0;
+}
+html{
+    font-size: 16px;
+}
+.kaishi{
+    font-size: 2rem;
+}
+.content{
+    position: absolute;
+    z-index: 1;
+    font-size: 2rem;
+    width: 100%;
+    height: 100%;
+}
+.content .flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+}
+.flex{
+    color: #f4abbf;
+    /* background-color: pink; */
+}
+.flex .images{
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    margin-top: 30px;
+}
+.content {
+    opacity: 0;
+    /* 初始隐藏 */
+    animation: fadeIn 1s ease-in-out 2s forwards;
+    /* 2秒后执行动画，1秒内淡入 */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.dh {
+    opacity: 1;
+    /* 初始显示 */
+    transition: opacity 0.8s ease-in-out;
+    /* 0.8秒渐变 */
+}
+
+.hidden {
+    opacity: 0;
+    display: none;
+}
