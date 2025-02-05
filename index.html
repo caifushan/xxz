@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>小蔡写给xxz</title>
+    <title>写给XXZ</title>
     <link rel="stylesheet" href="./src/style.css">
     <link rel="stylesheet" href="./src/common.css">
     <link rel="stylesheet" href="./src/pai.css">
@@ -24,7 +24,34 @@
             white-space: nowrap;
             writing-mode: vertical-rl;
             transform: rotate(360deg);
+            position: absolute;
+            left: var(--startX);
+            top: -190px;
+            font-size: 40px;
+            font-weight: bold;
+            color: var(--color);
+            opacity: 0.8;
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+            animation: fall linear var(--duration) var(--delay) forwards;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.2), 0 0 12px rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-50px);
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
         }
 
         .box {
@@ -48,7 +75,7 @@
     </audio>
     <div class="containera">
         <div class="items-text">
-            心血来潮想写个网站；有点不善言辞,还非常拧巴,情商也一般....（哈哈哈哈），但是我很认真的......啊啊啊啊，不行，得给你点压力
+            心血来潮想写个网站；有点不善言辞,还非常拧巴,情商也一般,缺点也多....（哈哈哈哈），但是我很认真......，不行，得给你点压力
         </div>
         <div>考试倒计时</div>
         <div class="countdown">
@@ -57,8 +84,8 @@
         <div>当前茂名天气</div>
         <div class="weather">
             <div id="temperature">温度：加载中...</div>
-            <div id="high-low">最高温度：加载中...</div>
-            <div id="high-d">最低温度：加载中...</div>
+            <div id="high-low">最高温度/最低温度：加载中...</div>
+            <div id="high-d">最高温度/最低温度：加载中...</div>
         </div>
 
         <div>今日心情：</div>
@@ -132,55 +159,103 @@
 
 </script>
 <script>
+    // const words = [
+    //     "狂吃不胖",
+    //     "钱包爆涨",
+    //     "颜值逆天",
+    //     "快乐加倍",
+    //     "瘦得像闪电",
+    //     "富得像土豪",
+    //     "美得像天仙",
+    //     "逛街捡钱",
+    //     "吃饭免单",
+    //     "睡到自然醒",
+    //     "可爱到爆",
+    //     "幸运到炸",
+    //     "可吃嘛嘛香",
+    //     "心情永远像放假",
+    // ];
+    // let intervalId;
+    // let isRaining = false;
+
+    // function createRainText() {
+    //     const text = document.createElement("div");
+    //     text.className = "rain-text";
+    //     text.innerText = words[Math.floor(Math.random() * words.length)];
+    //     document.querySelector('.box').appendChild(text);
+
+    //     // const startX = Math.random() * window.innerWidth;
+    //     const startX = Math.random() * (window.innerWidth - 20);
+    //     text.style.left = `${startX}px`;
+    //     text.style.top = `-200px`;
+    //     text.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+    //     // text.style.fontSize = `${Math.random() * 20 + 20}px`;
+    //     text.style.fontSize = `${Math.random() * 10 + 40}px`;
+    //     text.style.opacity = Math.random() * 0.5 + 0.5;
+
+    //     let speed = Math.random() * 5 + 2;
+    //     function fall() {
+    //         const top = parseFloat(text.style.top);
+    //         if (top < window.innerHeight) {
+    //             text.style.top = `${top + speed}px`;
+    //             requestAnimationFrame(fall);
+    //         } else {
+    //             text.remove();
+    //         }
+    //     }
+    //     fall();
+    // }
+    // function startRain() {
+    //     if (!isRaining) {
+    //         intervalId = setInterval(createRainText, 200);
+    //         isRaining = true;
+    //     }
+    // }
+
+    // function stopRain() {
+    //     clearInterval(intervalId);
+    //     isRaining = false;
+    // }
+    // let imagesBtn = document.querySelector(".images")
+    // let containera = document.querySelector(".containera")
+    // let dh = document.querySelector(".dh")
+    // imagesBtn.onclick = function () {
+    //     document.getElementById('myAudio').play()
+    //     dh.classList.add("hidden");
+    //     startRain()
+    //     containera.style.opacity = '1'
+    // }
+
     const words = [
-        "狂吃不胖",
-        "钱包爆涨",
-        "颜值逆天",
-        "快乐加倍",
-        "瘦得像闪电",
-        "富得像土豪",
-        "美得像天仙",
-        "逛街捡钱",
-        "吃饭免单",
-        "睡到自然醒",
-        "可爱到爆",
-        "幸运到炸",
-        "可吃嘛嘛香",
-        "心情永远像放假",
+        "狂吃不胖", "钱包爆涨", "颜值逆天", "快乐加倍", "瘦得像闪电",
+        "富得像土豪", "美得像天仙", "逛街捡钱", "吃饭免单", "睡到自然醒",
+        "可爱到爆", "幸运到炸", "可吃嘛嘛香", "心情永远像放假"
     ];
+
     let intervalId;
     let isRaining = false;
+    const maxRainCount = 40; // 限制最大雨滴数量
 
     function createRainText() {
+        if (document.querySelectorAll('.rain-text').length >= maxRainCount) return;
+
         const text = document.createElement("div");
         text.className = "rain-text";
         text.innerText = words[Math.floor(Math.random() * words.length)];
         document.querySelector('.box').appendChild(text);
 
-        // const startX = Math.random() * window.innerWidth;
-        const startX = Math.random() * (window.innerWidth - 20);
-        text.style.left = `${startX}px`;
-        text.style.top = `-200px`;
-        text.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
-        // text.style.fontSize = `${Math.random() * 20 + 20}px`;
-        text.style.fontSize = `${Math.random() * 10 + 40}px`;
-        text.style.opacity = Math.random() * 0.5 + 0.5;
+        const startX = Math.random() * (window.innerWidth - 40);
+        text.style.setProperty("--startX", `${startX}px`);
+        text.style.setProperty("--color", `hsl(${Math.random() * 360}, 100%, 70%)`);
+        text.style.setProperty("--delay", `${Math.random() * 2}s`); // 0~2s 的延迟，避免一堆文字同时掉落
+        text.style.setProperty("--duration", `${Math.random() * 4 + 4}s`); // 4~8s 让文字下落更慢
 
-        let speed = Math.random() * 5 + 2;
-        function fall() {
-            const top = parseFloat(text.style.top);
-            if (top < window.innerHeight) {
-                text.style.top = `${top + speed}px`;
-                requestAnimationFrame(fall);
-            } else {
-                text.remove();
-            }
-        }
-        fall();
+        setTimeout(() => text.remove(), 10000); // 10 秒后删除，避免 DOM 过载
     }
+
     function startRain() {
         if (!isRaining) {
-            intervalId = setInterval(createRainText, 200);
+            intervalId = setInterval(createRainText, 500); // 降低创建频率
             isRaining = true;
         }
     }
@@ -188,16 +263,15 @@
     function stopRain() {
         clearInterval(intervalId);
         isRaining = false;
+        document.querySelectorAll('.rain-text').forEach(text => text.remove());
     }
-    let imagesBtn = document.querySelector(".images")
-    let containera = document.querySelector(".containera")
-    let dh = document.querySelector(".dh")
-    imagesBtn.onclick = function () {
-        document.getElementById('myAudio').play()
-        dh.classList.add("hidden");
-        startRain()
-        containera.style.opacity = '1'
-    }
+    document.getElementById('myAudio').play();
+    document.querySelector(".images").onclick = function () {
+        document.getElementById('myAudio').play();
+        document.querySelector(".dh").classList.add("hidden");
+        startRain();
+        document.querySelector(".containera").style.opacity = '1';
+    };
 
 </script>
 <script>
@@ -231,7 +305,8 @@
         } catch (error) {
             console.error('获取天气信息失败：', error);
             document.getElementById('temperature').textContent = '温度：获取失败';
-            document.getElementById('high-low').textContent = '最高温度/最低温度：获取失败';
+            document.getElementById('high-low').textContent = '最低温度：获取失败';
+            document.getElementById('high-d').textContent = `最低温度：获取失败`;
         }
     }
 
